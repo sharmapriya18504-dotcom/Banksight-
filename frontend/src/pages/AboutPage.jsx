@@ -249,7 +249,7 @@ export default function AboutPage() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', minWidth: '260px' }}>
           <a
-            href="https://github.com/sharmapriya18504-dotcom/Banksight"
+            href="https://github.com/sharmapriya18504-dotcom/Banksight-"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -270,7 +270,7 @@ export default function AboutPage() {
             onMouseOut={(e) => e.currentTarget.style.background = '#f8fafc'}
           >
             <GitBranch size={16} color="var(--cyan)" />
-            <span>github.com/sharmapriya18504-dotcom/Banksight</span>
+            <span>github.com/sharmapriya18504-dotcom/Banksight-</span>
           </a>
 
           <div style={{
