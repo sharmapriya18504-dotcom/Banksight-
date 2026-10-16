@@ -151,18 +151,13 @@ function handleMockRequest(url, init = {}) {
     const saved = localStorage.getItem('banksight_user');
     if (saved) {
       try {
-        return createJsonResponse({ user: JSON.parse(saved) });
+        const u = JSON.parse(saved);
+        if (u && u.username) {
+          return createJsonResponse({ user: u });
+        }
       } catch (e) {}
     }
-    // Default admin profile
-    const defaultUser = {
-      id: 1,
-      username: 'admin',
-      email: 'admin@banksight.com',
-      fullName: 'Priya Sharma (Admin)',
-      role: 'admin'
-    };
-    return createJsonResponse({ user: defaultUser });
+    return createJsonResponse({ error: 'Unauthenticated' }, 401);
   }
 
   // 4. AUTHENTICATION: LOGOUT
