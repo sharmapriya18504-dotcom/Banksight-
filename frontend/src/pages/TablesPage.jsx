@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Database, Search, ChevronLeft, ChevronRight, Download, Filter, Eye } from 'lucide-react';
 import { formatNumber, formatCurrency } from '../utils/formatters';
+import { API_BASE } from '../config';
 
 const TABLES = [
   'customers',
@@ -26,7 +27,7 @@ export default function TablesPage() {
   const loadTableData = async () => {
     setLoading(true);
     try {
-      const url = `http://localhost:5000/api/tables/${selectedTable}?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`;
+      const url = `${API_BASE}/api/tables/${selectedTable}?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`;
       const res = await fetch(url).then(r => r.json());
       setData(res.data || []);
       setColumns(res.columns || []);

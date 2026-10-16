@@ -10,6 +10,7 @@ import {
   AlertTriangle,
   RefreshCw
 } from 'lucide-react';
+import { API_BASE } from '../config';
 
 export default function CrudPage() {
   const [tab, setTab] = useState('customers');
@@ -35,7 +36,7 @@ export default function CrudPage() {
     setStatusMsg(null);
 
     try {
-      const res = await fetch('http://localhost:5000/api/crud/customer', {
+      const res = await fetch(`${API_BASE}/api/crud/customer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -71,7 +72,7 @@ export default function CrudPage() {
     setStatusMsg(null);
 
     try {
-      const res = await fetch(`http://localhost:5000/api/crud/customer/${delCid}`, {
+      const res = await fetch(`${API_BASE}/api/crud/customer/${delCid}`, {
         method: 'DELETE'
       });
       const data = await res.json();

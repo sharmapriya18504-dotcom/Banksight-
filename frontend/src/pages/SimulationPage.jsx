@@ -10,6 +10,7 @@ import {
   Info
 } from 'lucide-react';
 import { formatCurrency, formatDate } from '../utils/formatters';
+import { API_BASE } from '../config';
 
 export default function SimulationPage() {
   const [accounts, setAccounts] = useState([]);
@@ -24,7 +25,7 @@ export default function SimulationPage() {
   // Load eligible accounts from database
   const loadAccounts = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/simulate/accounts').then(r => r.json());
+      const res = await fetch(`${API_BASE}/api/simulate/accounts`).then(r => r.json());
       setAccounts(res || []);
       if (res && res.length > 0 && !selectedCid) {
         setSelectedCid(res[0].customer_id);
@@ -38,7 +39,7 @@ export default function SimulationPage() {
   const loadHistory = async (cid) => {
     if (!cid) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/simulate/history/${cid}`).then(r => r.json());
+      const res = await fetch(`${API_BASE}/api/simulate/history/${cid}`).then(r => r.json());
       setHistory(res || []);
     } catch (err) {
       console.error('Error fetching history:', err);
@@ -81,7 +82,7 @@ export default function SimulationPage() {
     setErrorMsg('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/simulate/execute', {
+      const res = await fetch(`${API_BASE}/api/simulate/execute`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

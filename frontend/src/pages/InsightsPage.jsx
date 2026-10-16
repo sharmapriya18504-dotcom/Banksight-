@@ -15,6 +15,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { formatCurrency, formatNumber } from '../utils/formatters';
+import { API_BASE } from '../config';
 
 export default function InsightsPage() {
   const [catalog, setCatalog] = useState([]);
@@ -29,7 +30,7 @@ export default function InsightsPage() {
 
   // Load catalog
   useEffect(() => {
-    fetch('http://localhost:5000/api/insights')
+    fetch(`${API_BASE}/api/insights`)
       .then(r => r.json())
       .then(d => {
         setCatalog(d || []);
@@ -41,7 +42,7 @@ export default function InsightsPage() {
   useEffect(() => {
     if (!selectedId) return;
     setLoading(true);
-    fetch(`http://localhost:5000/api/insights/${selectedId}`)
+    fetch(`${API_BASE}/api/insights/${selectedId}`)
       .then(r => r.json())
       .then(d => {
         setQueryDetail(d);
